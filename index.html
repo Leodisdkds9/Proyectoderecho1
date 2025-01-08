@@ -13,10 +13,17 @@
   </style>
 </head>
 <body class="bg-gradient-to-br from-slate-50 to-slate-100 min-h-screen p-4">
-  <!-- Audio Autoplay -->
-  <audio id="backgroundAudio" autoplay loop>
-    <source src="Audio derecho.mp3" type="audio/mpeg">
-  </audio>
+  <!-- Audio Control -->
+  <div class="fixed top-4 right-4 z-50">
+    <audio id="backgroundAudio" loop>
+      <source src="Audio derecho.mp3" type="audio/mpeg">
+    </audio>
+    <button id="audioControl" 
+            onclick="toggleAudio()"
+            class="p-4 bg-gradient-to-r from-indigo-500 to-purple-500 text-white rounded-xl hover:scale-105 transition-all duration-300 shadow-lg">
+      ▶️ Reproducir Audio
+    </button>
+  </div>
 
   <!-- Fondo -->
   <div class="absolute top-0 left-0 w-full h-full -z-10 opacity-20">
@@ -83,6 +90,20 @@
   </div>
 
   <script>
+    // Audio control function
+    function toggleAudio() {
+      const audio = document.getElementById('backgroundAudio');
+      const button = document.getElementById('audioControl');
+      
+      if (audio.paused) {
+        audio.play();
+        button.innerHTML = '⏸️ Pausar Audio';
+      } else {
+        audio.pause();
+        button.innerHTML = '▶️ Reproducir Audio';
+      }
+    }
+
     const normsData = {
       moral: {
         title: 'Normas Morales',
